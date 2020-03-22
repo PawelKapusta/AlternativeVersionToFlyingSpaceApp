@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tourists space flights</title>
+</head>
+<body>
+    <h1> Tourists list</h1>
+
+    <table>
+
+        <tr>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Country</th>
+            <th>Delete</th>
+        </tr>
+    <tr th:each = "tourists : ${tourists}">
+        <td th:text="${tourists.first}"></td>
+        <td th:text="${tourists.last}"></td>
+        <td th:text="${tourists.country}"></td>
+        <td> <a th:href="@{/delete/{id}(id=${tourists.id})}">Delete</a></td>
+    </tr>
+    </table>
+<form th:action="@{/add} " th:object="${newTourist}" method="post">
+    <p>First name: <input type="text" th:field="*{first}"> </p>
+    <p>Lst name:<input type="text" th:field="*{last}"></p>
+    <p>Country:<input type="text" th:field="*{country}"></p>
+    <p><input type="submit" value="Add"></p>
+
+
+</form>
+
+
+</body>
+</html>
